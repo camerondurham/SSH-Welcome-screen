@@ -4,14 +4,14 @@
 # Color esthetics
 ########################################################################
 CNC='\e[0m' # No color
-C0='\033[1;37m' # White
-C1='\033[0;35m' # Purple
+CWHITE='\033[1;37m' # White
+CPURPLE='\033[0;35m' # Purple
 # C2='\033[0;32m' # Green # Not Used
-C3='\033[0;37m' # Light Gray
-C4='\033[1;32m' # Light Green
-C5='\033[0;31m' # Red
-C6='\033[1;33m' # Yellow
-C7='\033[0;34m' # Blue
+CGRAY='\033[0;37m' # Light Gray
+CGREEN='\033[1;32m' # Light Green
+CRED='\033[0;31m' # Red
+CYELLOW='\033[1;33m' # Yellow
+CBLUE='\033[0;34m' # Blue
 
 ########################################################################
 # Parameters
@@ -20,7 +20,7 @@ C7='\033[0;34m' # Blue
 # CPU Temperature default is in degrees Celsius
 # You can output it in Degrees Farenheit by changing the parameter below
 # to true
-isCPUTempFarenheit=false
+isCPUTempFarenheit=true
 
 ########################################################################
 # Commands configuration
@@ -121,51 +121,61 @@ fi
 # Clear the screen and reset the scrollback
 clear && printf '\e[3J'
 
-# Print a city scape (purely aesthetic)
+# Print an Asexual Pride Flag
 # If "you no like", delete it or replace with your own ;)
-echo -e " ${C0}+                    +                     +         +
-                                 +                  +           +
-          +                                             +
-                                       \ /
-                      +     _        - _+_ -                    ___${C3}
-        _${C6}=.${C0}    ${C5}.:.${C3}         /${C6}=${C3}\       _|${C0}===${C3}|_                  || ${C6}::${C3}|
-       |  |    _${C5}|.${C3}        |   |     | |   | |     __${C7}===${C3}_  ${C0}-=-${C3} || ${C6}::${C3}|
-       |${C6}==${C3}|   |  |  __    |${C6}.:.${C3}|   /\| | ${C6}:.${C3}| |    |   | ${C6}.${C3}|| ${C6}:${C3} ||| ${C6}::${C3}|
-       |  |-  |${C6}.:${C3}|_|${C6}. :${C3}__ |${C6}.:${C3} |--|${C6}==${C3}| |  ${C6}.${C3}| |_   | ${C6}.${C3} |${C6}.${C3} ||${C6}.${C3}  ||| ${C6}:.${C3}|
-     __|${C6}.${C3} | |_|${C6}.${C3} | |${C6}.${C3}|${C6}...${C3}||---|  |${C6}==${C3}| |   | | |_--${C6}.${C3}     ||   |||${C6}.${C3}  |
-    |  |  |   |${C6}.${C3} | | |${C6}::.${C3}|| ${C6}:.${C3}|  |${C6}==${C3}| | ${C6}. :${C3} |${C6}=${C3}|${C6}===${C3}|    ${C6}:${C3}|| ${C6}.${C3} |||  ${C6}.${C3}|
-    |${C6}:.${C3}| ${C6}.${C3}|   |  | | |${C6}:.:${C3}|| ${C6}.${C3} |  |${C6}==${C3}| |     |${C6}=${C3}|${C6}===${C3}|${C6} .${C3}   |    | |   |
-    |     |      |   |   |            :   .   |   ;     ;          |
-          :          :                .          .      .          :
+echo -e "${CNC}                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+${CGRAY}====================================================================
+====================================================================   
+====================================================================   
+====================================================================   
+====================================================================   
+====================================================================   
+${CWHITE}====================================================================
+====================================================================   
+====================================================================   
+====================================================================   
+====================================================================   
+====================================================================   
+${CPURPLE}====================================================================
+====================================================================     
+====================================================================     
+====================================================================     
+====================================================================     
+====================================================================     
+"
+# Print out all of the information collected using the script
+echo -e "${CPURPLE} ++++++++++++++++++++++++: ${CGRAY}System Data${CPURPLE} :+++++++++++++++++++++++++++
+${CPURPLE} + ${CGRAY}Hostname       ${CPURPLE}=  ${CGREEN}$(hostname) ${CWHITE}($(hostname --fqdn))
+${CPURPLE} + ${CGRAY}IPv4 Address   ${CPURPLE}=  ${CGREEN}$remote_ip ${CWHITE}($local_ip)
+${CPURPLE} + ${CGRAY}Uptime         ${CPURPLE}=  ${CGREEN}$machine_uptime
+${CPURPLE} + ${CGRAY}Time           ${CPURPLE}=  ${CWHITE}$(date)
+${CPURPLE} + ${CGRAY}CPU Temp       ${CPURPLE}=  ${CWHITE}$cur_temperature
+${CPURPLE} + ${CGRAY}Processes      ${CPURPLE}=  ${CGREEN}$PROCCOUNT of $(ulimit -u) max
+${CPURPLE} + ${CGRAY}Load Averages  ${CPURPLE}=  ${CGREEN}${loadavg_one}, ${loadavg_five}, ${loadavg_fifteen} ${CWHITE}(1, 5, 15 min)
+${CPURPLE} + ${CGRAY}Distro         ${CPURPLE}=  ${CGREEN}$distro_pretty_name ${CWHITE}($(uname -r))
+${CPURPLE} + ${CGRAY}CPU            ${CPURPLE}=  ${CGREEN}$cpu_model_name
+${CPURPLE} + ${CGRAY}Memory         ${CPURPLE}=  ${CGREEN}$memory_percent ${CWHITE}(${memory_free_mb}MB Free, ${memory_used_mb}MB/${memory_available_mb}MB Used)
+${CPURPLE} + ${CGRAY}Swap           ${CPURPLE}=  ${CGREEN}$swap_percent ${CWHITE}(${swap_free_mb}MB Free, ${swap_used_mb}MB/${swap_available_mb}MB Used)
+${CPURPLE} + ${CGRAY}HDD Usage      ${CPURPLE}=  ${CGREEN}$hdd_percent ${CWHITE}(${hdd_free}B Free, ${hdd_used}B/${hdd_available}B Used)
+${CPURPLE} + ${CGRAY}Updates        ${CPURPLE}=  ${CGREEN}$UPDATESAVAIL ${CWHITE}Updates Available
+${CPURPLE} ++++++++++++++++++++: ${CGRAY}Top CPU Processes${CPURPLE} :+++++++++++++++++++++++++
+$cpu_top_processes${CWHITE}
+${CPURPLE} ++++++++++++++++++++: ${CGRAY}Top Mem Processes${CPURPLE} :+++++++++++++++++++++++++
+$mem_top_processes${CWHITE}
+${CPURPLE} ++++++++++++++++++++++++: ${CGRAY}User Data${CPURPLE} :+++++++++++++++++++++++++++++
+${CPURPLE} + ${CGRAY}Username       ${CPURPLE}=  ${CGREEN}$USER ${CWHITE}($USERGROUP)
+${CPURPLE} + ${CGRAY}Last Login     ${CPURPLE}=  ${CGREEN}$last_login_user from $last_login_ip
+${CPURPLE} + ${CGRAY}Sessions       ${CPURPLE}=  ${CGREEN}$(who | grep -c "$USER")
+${CPURPLE} ++++++++++++++++++++: ${CGRAY}Helpful Information${CPURPLE} :+++++++++++++++++++++++
+${CPURPLE} + ${CGRAY}Administrators ${CPURPLE}=  ${CGREEN}$ADMINSLIST
+${CPURPLE} + ${CGRAY}OpenPorts IPv4 ${CPURPLE}=  ${CGREEN}$OPEN_PORTS_IPV4
+${CPURPLE} + ${CGRAY}OpenPorts IPv6 ${CPURPLE}=  ${CGREEN}$OPEN_PORTS_IPV6
+${CPURPLE} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${CNC}
 "
 
-# Print out all of the information collected using the script
-echo -e "${C1} ++++++++++++++++++++++++: ${C3}System Data${C1} :+++++++++++++++++++++++++++
-${C1} + ${C3}Hostname       ${C1}=  ${C4}$(hostname) ${C0}($(hostname --fqdn))
-${C1} + ${C3}IPv4 Address   ${C1}=  ${C4}$remote_ip ${C0}($local_ip)
-${C1} + ${C3}Uptime         ${C1}=  ${C4}$machine_uptime
-${C1} + ${C3}Time           ${C1}=  ${C0}$(date)
-${C1} + ${C3}CPU Temp       ${C1}=  ${C0}$cur_temperature
-${C1} + ${C3}Processes      ${C1}=  ${C4}$PROCCOUNT of $(ulimit -u) max
-${C1} + ${C3}Load Averages  ${C1}=  ${C4}${loadavg_one}, ${loadavg_five}, ${loadavg_fifteen} ${C0}(1, 5, 15 min)
-${C1} + ${C3}Distro         ${C1}=  ${C4}$distro_pretty_name ${C0}($(uname -r))
-${C1} + ${C3}CPU            ${C1}=  ${C4}$cpu_model_name
-${C1} + ${C3}Memory         ${C1}=  ${C4}$memory_percent ${C0}(${memory_free_mb}MB Free, ${memory_used_mb}MB/${memory_available_mb}MB Used)
-${C1} + ${C3}Swap           ${C1}=  ${C4}$swap_percent ${C0}(${swap_free_mb}MB Free, ${swap_used_mb}MB/${swap_available_mb}MB Used)
-${C1} + ${C3}HDD Usage      ${C1}=  ${C4}$hdd_percent ${C0}(${hdd_free}B Free, ${hdd_used}B/${hdd_available}B Used)
-${C1} + ${C3}Updates        ${C1}=  ${C4}$UPDATESAVAIL ${C0}Updates Available
-${C1} ++++++++++++++++++++: ${C3}Top CPU Processes${C1} :+++++++++++++++++++++++++
-$cpu_top_processes${C0}
-${C1} ++++++++++++++++++++: ${C3}Top Mem Processes${C1} :+++++++++++++++++++++++++
-$mem_top_processes${C0}
-${C1} ++++++++++++++++++++++++: ${C3}User Data${C1} :+++++++++++++++++++++++++++++
-${C1} + ${C3}Username       ${C1}=  ${C4}$USER ${C0}($USERGROUP)
-${C1} + ${C3}Last Login     ${C1}=  ${C4}$last_login_user from $last_login_ip
-${C1} + ${C3}Sessions       ${C1}=  ${C4}$(who | grep -c "$USER")
-${C1} ++++++++++++++++++++: ${C3}Helpful Information${C1} :+++++++++++++++++++++++
-${C1} + ${C3}Administrators ${C1}=  ${C4}$ADMINSLIST
-${C1} + ${C3}OpenPorts IPv4 ${C1}=  ${C4}$OPEN_PORTS_IPV4
-${C1} + ${C3}OpenPorts IPv6 ${C1}=  ${C4}$OPEN_PORTS_IPV6
-${C1} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++${CNC}
-"
 
